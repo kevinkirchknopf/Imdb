@@ -24,12 +24,12 @@ namespace Imdb_Libary
 
         public ObservableCollection<Film> GetAllFilm()
         {
-            return new ObservableCollection<Film>(from f in FilmContext.Film select f);
+            return new ObservableCollection<Film>((from f in FilmContext.film.Include(c => c.FilmMufajok).ThenInclude(c => c.mufaj) select f));
         }
 
         public Film GetFilm(int id)
         {
-            throw new NotImplementedException();
+            return (from f in FilmContext.film.Include(c => c.FilmMufajok).ThenInclude(c => c.mufaj) where f.id == id select f).FirstOrDefault();
         }
 
         public void RemoveFilm(int id)

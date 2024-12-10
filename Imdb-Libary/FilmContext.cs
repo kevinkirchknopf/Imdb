@@ -4,9 +4,9 @@ namespace Imdb_Libary
 {
     public class FilmContext : DbContext
     {
-        public DbSet<Film> Film { get; set; }
-        public DbSet<Mufaj> Mufajok { get; set; }
-        public DbSet<FilmMufaj> FilmMufajok { get; set; }
+        public DbSet<Film> film { get; set; }
+        public DbSet<Mufaj> mufaj { get; set; }
+        public DbSet<FilmMufaj> filmmufaj { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

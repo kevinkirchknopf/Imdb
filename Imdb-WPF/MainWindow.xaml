@@ -5,15 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Imdb_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Film Adatbázis" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <ListBox x:Name="FilmList" IsSynchronizedWithCurrentItem="True" >
-            
+        <Label Content="Top 1000" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"/>
+
+        <ListBox Grid.Column="0" x:Name="lbCimek" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel Margin="10,0,0,0">
+                            <TextBlock Text="{Binding cim}" FontWeight="Bold"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Megjelenési dátum: "/>
+                                <TextBlock Text="{Binding datum}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+            <ListBox x:Name="lbMufajok" ItemsSource="{Binding filmmufajok}" DisplayMemberPath="Mufaj.mufaj"/>
+
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Hossz (perc): " FontWeight="Bold"/>
+                <TextBlock Text="{Binding hossz}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Rendező: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding rendezo}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Kivonat: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding kivonat}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Pontszám: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding pontszam}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Szavazatok: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding szavazat}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Kiadó: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding kiado}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5,0" Width="197">
+                <Image Source="{Binding boritourl}" Width="250" Height="250"></Image>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
